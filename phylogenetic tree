@@ -1,0 +1,125 @@
+khalid@khalid-VirtualBox:~$ cd
+khalid@khalid-VirtualBox:~$ ls Desktop
+phyloseqs.fasta
+khalid@khalid-VirtualBox:~$ grep '>' Desktop/phyloseqs.fasta
+>ATCC_25922
+>FORC_038
+>FSW0104
+>QD23
+>R19_2839
+>SLR1_7697
+khalid@khalid-VirtualBox:~$ grep '>' Desktop/phyloseqs.fasta |wc -l
+6
+khalid@khalid-VirtualBox:~$ ls apps
+muscle  phyml
+khalid@khalid-VirtualBox:~$ muscle -in Desktop/phyloseqs.fasta -out phyloseqs.msa.fasta
+
+MUSCLE v3.8.31 by Robert C. Edgar
+
+http://www.drive5.com/muscle
+This software is donated to the public domain.
+Please cite: Edgar, R.C. Nucleic Acids Res 32(5), 1792-97.
+
+phyloseqs 6 seqs, max length 1554, avg  length 1547
+00:00:00    10 MB(-1%)  Iter   1  100.00%  K-mer dist pass 1
+00:00:00    10 MB(-1%)  Iter   1  100.00%  K-mer dist pass 2
+00:00:00    22 MB(-2%)  Iter   1  100.00%  Align node       
+00:00:00    22 MB(-2%)  Iter   1  100.00%  Root alignment
+00:00:00    22 MB(-2%)  Iter   2  100.00%  Root alignment
+00:00:01    22 MB(-2%)  Iter   3  100.00%  Refine biparts
+khalid@khalid-VirtualBox:~$ muscle -in phyloseqs.msa.fasta -out phyloseqs.refined.phylip -refine -phyi
+
+MUSCLE v3.8.31 by Robert C. Edgar
+
+http://www.drive5.com/muscle
+This software is donated to the public domain.
+Please cite: Edgar, R.C. Nucleic Acids Res 32(5), 1792-97.
+
+00:00:00    17 MB(-2%)  Iter   1  100.00%  Refine biparts
+khalid@khalid-VirtualBox:~$ phyml -i phyloseqs.refined.phylip -d nt -m GTR -o tlr
+
+
+
+
+
+
+                                 ..........................                                      
+ ooooooooooooooooooooooooooooo        CURRENT SETTINGS        ooooooooooooooooooooooooooooooooooo
+                                 ..........................                                      
+
+                . Sequence filename:				 phyloseqs.refined.phylip
+                . Data type:					 dna
+                . Alphabet size:				 4
+                . Sequence format:				 interleaved
+                . Number of data sets:				 1
+                . Nb of bootstrapped data sets:			 0
+                . Compute approximate likelihood ratio test:	 yes (SH-like branch supports)
+                . Model name:					 GTR
+                . Proportion of invariable sites:		 0.000000
+                . Number of subst. rate categs:			 4
+                . Gamma distribution parameter:			 estimated
+                . 'Middle' of each rate class:			 mean
+                . Nucleotide equilibrium frequencies:		 empirical
+                . Optimise tree topology:			 yes
+                . Tree topology search:				 NNIs
+                . Starting tree:				 BioNJ
+                . Add random input tree:			 no
+                . Optimise branch lengths:			 yes
+                . Optimise substitution model parameters:	 yes
+                . Run ID:					 none
+                . Random seed:					 1652173199
+                . Subtree patterns aliasing:			 no
+                . Version:					 20120412
+
+ oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+
+
+. 65 patterns found (out of a total of 1554 sites). 
+
+. 1473 sites without polymorphism (94.79%).
+
+. Computing pairwise distances...
+
+. Building BioNJ tree...
+. Refining the input tree...
+
+. Maximizing likelihood (using NNI moves)...
+
+. (    0 sec) [     -2731.9454] [GTR parameters     ]
+. (    0 sec) [     -2727.5451] [Alpha              ][  0.250459]
+. (    0 sec) [     -2727.5451] [Topology           ][# nnis=  0]
+. (    0 sec) [     -2727.4937] [Topology           ][# nnis=  0]
+. (    0 sec) [     -2727.4876] [Topology           ]
+. (    0 sec) [     -2727.4876] [Branch lengths     ]
+. (    0 sec) [     -2727.4846] [GTR parameters     ]
+. (    0 sec) [     -2724.3796] [Alpha              ][  0.125344]
+. (    0 sec) [     -2724.3796] [Branch lengths     ]
+. (    0 sec) [     -2724.3615] [GTR parameters     ]
+. (    0 sec) [     -2723.2030] [Alpha              ][  0.062792]
+. (    0 sec) [     -2723.2030] [Branch lengths     ]
+. (    0 sec) [     -2723.1986] [GTR parameters     ]
+. (    0 sec) [     -2723.0729] [Alpha              ][  0.032307]
+. (    0 sec) [     -2723.0729] [Branch lengths     ]
+. (    0 sec) [     -2723.0727] [GTR parameters     ]
+. (    0 sec) [     -2723.0712] [Alpha              ][  0.026137]
+. (    0 sec) [     -2723.0712] [Branch lengths     ]
+. (    0 sec) [     -2723.0712] [GTR parameters     ]
+. (    0 sec) [     -2723.0710] [Alpha              ][  0.021145]
+. (    0 sec) [     -2723.0710] [GTR parameters     ]
+. (    0 sec) [     -2723.0710] [Alpha              ][  0.021145]
+
+. Checking for NNIs, optimizing five branches...
+
+
+
+. Log likelihood of the current tree: -2723.070980.
+
+. Compute fast branch supports on the most likely tree...
+
+. Printing the most likely tree in file 'phyloseqs.refined.phylip_phyml_tree.txt'...
+
+. Time used 0h0m0s
+
+oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
